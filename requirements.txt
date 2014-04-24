@@ -1,0 +1,11 @@
+APScheduler==2.1.2
+Flask==0.10.1
+Flask-Assets==0.9
+Flask-Script==0.6.7
+Jinja2==2.7.2
+MarkupSafe==0.21
+Werkzeug==0.9.4
+cssmin==0.2.0
+itsdangerous==0.24
+webassets==0.9
+wsgiref==0.1.2

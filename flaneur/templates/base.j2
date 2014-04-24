@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% assets "all_css" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+    {% assets "all_js" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+</head>
+<body>
+    <div class="gridster" ng-app="flaneur" ng-controller="AppCtrl">
+        <ul>
+            {% block widgets %}{% endblock %}
+        </ul>
+    </div>
+</body>
+</html>
