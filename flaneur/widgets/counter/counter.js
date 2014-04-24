@@ -2,11 +2,13 @@ angular.module('flaneur').directive('flaneurCounter', function (Hub)
 {
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+            channel: '@'
+        },
         templateUrl: 'widgets/counter/counter.html',
-        link: function (scope)
+        link: function (scope, attrs)
         {
-            Hub.bind('counter', scope)
+            Hub.bind(scope.channel, scope)
         }
     }
 })

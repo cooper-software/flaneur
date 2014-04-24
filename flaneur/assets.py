@@ -15,7 +15,8 @@ class AngularTemplatesFilter(Filter):
     def input(self, _in, out, **kwargs):
         path = os.path.abspath(kwargs['source_path'])
         path = os.path.relpath(path, app.root_path)
-        out.write(self.input_template % (path, _in.read()))
+        data = _in.read().replace("\n", "\\n")
+        out.write(self.input_template % (path, data))
         
 
 register_filter(AngularTemplatesFilter)

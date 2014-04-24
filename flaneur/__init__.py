@@ -1,5 +1,5 @@
 from flask import Flask
-import os
+import os, sys
 
 app = Flask("flaneur")
 app.config.from_object('flaneur.config')
@@ -16,8 +16,9 @@ def run():
     try:
         scheduler.start()
         app.run(threaded=True)
-    except KeyboardInterrupt:
-        scheduler.shutdown(wait=False)
+    except KeyboardInterrupt, SystemExit:
+        scheduler.shutdown()
+        sys.exit()
 
 
 if __name__ == "__main__":
