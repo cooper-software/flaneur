@@ -1,6 +1,4 @@
-import gevent
-from gevent.wsgi import WSGIServer
-from gevent.queue import Queue
+from Queue import Queue
 from flask import Response
 import json
 
@@ -28,18 +26,12 @@ class ServerSentEvent(object):
 subscriptions = []
 
 def publish(channel, data):
-    if channel not in subscriptions:
-        return
-        
-    def notify():
-        msg = json.dumps({
-            'channel': channel,
-            'data': data
-        })
-        for sub in subscriptions[:]:
-            sub.put(msg)
-    
-    gevent.spawn(notify)
+    msg = json.dumps({
+        'channel': channel,
+        'data': data
+    })
+    for sub in subscriptions[:]:
+        sub.put(msg)
     
     
 def subscribe():
@@ -57,9 +49,7 @@ def subscribe():
     return Response(gen(), mimetype="text/event-stream")
 
 
-def run(app):
-    name, port = app.config['SERVER_NAME'].split(':')
-    server = WSGIServer((name, int(port)), app)
-    print "Running server at %s" % app.config['SERVER_NAME']
-    server.serve_forever()
+def emit(channel, data):
+    last_channel_data[channel] = data
+    return
     

@@ -10,6 +10,15 @@ if 'FLANEUR_SETTINGS' in os.environ:
 import assets
 import views
 import sse
+from scheduler import scheduler
+
+def run():
+    try:
+        scheduler.start()
+        app.run(threaded=True)
+    except KeyboardInterrupt:
+        scheduler.shutdown(wait=False)
+
 
 if __name__ == "__main__":
-    sse.run(app)
+    run()

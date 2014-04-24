@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <script type="text/javascript">INITIAL_CHANNEL_DATA = {{ channel_data | tojson }}</script>
     {% assets "all_css" %}
         <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
     {% endassets %}

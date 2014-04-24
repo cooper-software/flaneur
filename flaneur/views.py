@@ -1,6 +1,6 @@
 import os
 from flask import render_template, abort, request
-from flaneur import app, sse
+from flaneur import app, sse, scheduler
 
 
 @app.route("/")
@@ -14,7 +14,7 @@ def layout(name):
     if not os.path.exists(os.path.join(app.root_path, "templates", path)):
         abort(404)
     else:
-        return render_template(path)
+        return render_template(path, channel_data=scheduler.get_job_data())
         
         
 @app.route("/subscribe")

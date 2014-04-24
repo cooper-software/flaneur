@@ -15,25 +15,66 @@ app.controller("AppCtrl", function ()
     
 })
 
-app.service('Publisher', function ()
+app.factory('Hub', function ($timeout)
 {
-    this.subscribers = {}
-    
-    this.subscribe = function (channel, callback)
+    var Hub = function ()
     {
-        if (!this.subscribers[channel])
-        {
-            this.subscribers[channel] = []
-        }
         
-        this.subscribers[channel].append(callback)
+    }
+    Hub.prototype = 
+    {
+        subscribers: {},
+        
+        subscribe: function (channel, callback)
+        {
+            if (!this.subscribers[channel])
+            {
+                this.subscribers[channel] = []
+            }
+            
+            this.subscribers[channel].push(callback)
+        },
+        
+        publish: function (channel, data)
+        {
+            if (this.subscribers[channel])
+            {
+                this.subscribers[channel].forEach(function (callback)
+                {
+                    callback(data)
+                })
+            }
+        },
+        
+        bind: function (channel, scope)
+        {
+            this.subscribe(channel, function (data)
+            {
+                $timeout(function ()
+                {
+                    for (var n in data)
+                    {
+                        scope[n] = data[n]
+                    }
+                })
+            })
+        }
     }
     
+    var hub = new Hub()
     var eventSource = new EventSource('/subscribe')
+    
     eventSource.onmessage = function (msg)
     {
-        console.log(msg)
+        var data = JSON.parse(msg.data)
+        
+        if (data && data.channel && data.data)
+        {
+            hub.publish(data.channel, data.data)
+        }
     }
+    
+    return hub
 })
 
 app.run(function ()
