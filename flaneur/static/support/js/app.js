@@ -17,10 +17,8 @@ app.controller("AppCtrl", function ()
 
 app.factory('Hub', function ($timeout)
 {
-    var Hub = function ()
-    {
-        
-    }
+    var started = false
+    var Hub = function () {}
     Hub.prototype = 
     {
         subscribers: {},
@@ -58,6 +56,11 @@ app.factory('Hub', function ($timeout)
                     }
                 })
             })
+            
+            if (!started && INITIAL_CHANNEL_DATA && INITIAL_CHANNEL_DATA[channel])
+            {
+                hub.publish(channel, INITIAL_CHANNEL_DATA[channel])
+            }
         }
     }
     
@@ -66,6 +69,7 @@ app.factory('Hub', function ($timeout)
     
     eventSource.onmessage = function (msg)
     {
+        started = true
         var data = JSON.parse(msg.data)
         
         if (data && data.channel && data.data)
