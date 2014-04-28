@@ -1,0 +1,54 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    font-family: sans-serif;
+    background-color: #fff;
+    color: #fff;
+}
+
+a
+{
+    color: #efefef;
+    text-decoration: none;
+}
+
+.gridster > ul
+{
+    list-style: none;
+    padding: 0;
+}
+
+.gridster > ul > li
+{
+    background-color: #777;
+    display: table;
+}
+
+.gridster > ul > li > *
+{
+    padding: 25px 12px;
+    width: 100%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+body .gridster .preview-holder
+{
+    background-color: #888;
+}
+
+.gridster .blue
+{
+    background-color: #2C97DE;
+}
+
+.gridster .red
+{
+    background-color: #DA4453;
+}

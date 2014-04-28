@@ -83,5 +83,7 @@ app.factory('Hub', function ($timeout)
 
 app.run(function ()
 {
-    $('.gridster ul').gridster()
+    $('.gridster ul').gridster({
+        widget_margins: [0, 0]
+    })
 })
