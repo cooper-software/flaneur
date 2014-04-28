@@ -26,6 +26,7 @@ for module in os.listdir(os.path.join(os.path.dirname(__file__), 'jobs')):
         if hasattr(job, 'setup'):
             job.setup(options)
         
+        update(job_name, job, options)
         scheduler.add_interval_job(update, **kwargs)
         
 def get_job_data():

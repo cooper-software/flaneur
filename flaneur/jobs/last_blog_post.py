@@ -2,7 +2,7 @@ from datetime import datetime
 from MySQLdb import connect
 
 INTERVAL = {
-    "seconds": 2
+    "minutes": 1
 }
 
 data = {
@@ -20,4 +20,3 @@ def update(options):
     last_post_date = cur.fetchone()[0]
     now = datetime.utcnow()
     data['count'] = (now - last_post_date).days
-    print data
