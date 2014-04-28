@@ -18,14 +18,25 @@ import views
 import sse
 from scheduler import scheduler
 
-def run():
+def _run():
     try:
         scheduler.start()
-        app.run(threaded=True, use_reloader=False)
+        app.run(threaded=True, use_reloader=False, processes=1)
     except KeyboardInterrupt, SystemExit:
-        print "Shutting down..."
-        scheduler.shutdown(wait=False)
-        sys.exit()
+        scheduler.shutdown()
+        
+
+def run():        
+    import multiprocessing
+    server = multiprocessing.Process(target=_run)
+    server.start()
+    try:
+        server.join()
+    except KeyboardInterrupt, SystemExit:
+        server.join(2)
+        if server.is_alive:
+            server.terminate()
+        
 
 
 if __name__ == "__main__":
