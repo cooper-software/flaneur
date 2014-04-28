@@ -7,5 +7,5 @@ data = {
     'label': 'A simple counter'
 }
 
-def update():
+def update(options):
     data['count'] += 1

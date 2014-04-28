@@ -7,6 +7,12 @@ app.config.from_object('flaneur.config')
 if 'FLANEUR_SETTINGS' in os.environ:
     app.config.from_envvar('FLANEUR_SETTINGS')
 
+#if not app.debug:
+if True:
+    import logging
+    logging.basicConfig(filename='flaneur.log', level=logging.DEBUG,
+            format='%(levelname)s[%(asctime)s]: %(message)s')
+
 import assets
 import views
 import sse
@@ -17,7 +23,8 @@ def run():
         scheduler.start()
         app.run(threaded=True, use_reloader=False)
     except KeyboardInterrupt, SystemExit:
-        scheduler.shutdown()
+        print "Shutting down..."
+        scheduler.shutdown(wait=False)
         sys.exit()
 
 
