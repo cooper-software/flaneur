@@ -3,7 +3,8 @@ INTERVAL = {
 }
 
 data = {
-    'count': 0
+    'count': 0,
+    'label': 'A simple counter'
 }
 
 def update():
