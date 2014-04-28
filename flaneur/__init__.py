@@ -15,7 +15,7 @@ from scheduler import scheduler
 def run():
     try:
         scheduler.start()
-        app.run(threaded=True)
+        app.run(threaded=True, use_reloader=False)
     except KeyboardInterrupt:
         scheduler.shutdown(wait=False)
 

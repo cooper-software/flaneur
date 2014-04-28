@@ -57,3 +57,6 @@ docs/_build/
 .webassets-cache/
 all.css
 all.js
+
+# local config
+config-local.py
