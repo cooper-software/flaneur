@@ -52,3 +52,8 @@ body .gridster .preview-holder
 {
     background-color: #DA4453;
 }
+
+.gridster .gray
+{
+    background-color: #555;
+}

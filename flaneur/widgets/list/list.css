@@ -1,0 +1,11 @@
+flaneur-list ul
+{
+    list-style: none;
+    display: inline-block;
+}
+
+flaneur-list ul li
+{
+    text-align: left;
+    margin: 0.5em 0;
+}
