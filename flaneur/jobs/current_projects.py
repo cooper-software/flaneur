@@ -1,4 +1,4 @@
-from ..lib import wip
+from ..support import wip
 
 
 INTERVAL = {
