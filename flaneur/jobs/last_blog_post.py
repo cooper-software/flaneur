@@ -16,7 +16,7 @@ def update(options):
                    passwd=options['mysql_passwd'],
                    db=options['mysql_db'])
     cur = conn.cursor()
-    cur.execute('SELECT post_date FROM wp_posts ORDER BY post_date DESC LIMIT 1')
+    cur.execute("SELECT post_date_gmt FROM wp_posts WHERE post_status='publish' ORDER BY post_date_gmt DESC LIMIT 1")
     last_post_date = cur.fetchone()[0]
     now = datetime.utcnow()
     data['count'] = (now - last_post_date).days
