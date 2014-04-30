@@ -1,11 +1,11 @@
-angular.module('flaneur').directive('flaneurList', function (Hub)
+angular.module('flaneur').directive('cooperCurrentProjects', function (Hub)
 {
     return {
         restrict: 'E',
         scope: {
             channel: '@'
         },
-        templateUrl: 'widgets/list/list.html',
+        templateUrl: 'widgets/current_projects/current_projects.html',
         link: function (scope, attrs)
         {
             Hub.bind(scope.channel, scope)

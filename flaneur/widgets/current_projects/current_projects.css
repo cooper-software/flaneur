@@ -1,0 +1,20 @@
+cooper-current-projects ul
+{
+    list-style: none;
+    display: inline-block;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #333;
+}
+
+cooper-current-projects ul li
+{
+    text-align: left;
+    margin: 0.5em 0;
+}
+
+cooper-current-projects li h1
+{
+    margin: 0;
+    font-size: 1.2em;
+}

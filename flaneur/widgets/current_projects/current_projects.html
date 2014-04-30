@@ -1,0 +1,7 @@
+<h1>Current Projects</h1>
+<ul>
+    <li ng-repeat="project in projects | orderBy:'name'">
+        <h1>{{ project.name }}</h1>
+        <div class="team">{{ project.team.join(", ") }}</div>
+    </li>
+</ul>
