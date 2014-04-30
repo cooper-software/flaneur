@@ -16,14 +16,15 @@ if True:
 import assets
 import views
 import sse
-from scheduler import scheduler
+from scheduler import get_scheduler
 
 def _run():
+    scheduler = get_scheduler()
     try:
         scheduler.start()
         app.run(threaded=True, use_reloader=False, processes=1)
     except KeyboardInterrupt, SystemExit:
-        scheduler.shutdown()
+        scheduler.stop()
         
 
 def run():        
