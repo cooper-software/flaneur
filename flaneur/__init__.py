@@ -18,26 +18,19 @@ import views
 import sse
 from scheduler import get_scheduler
 
-def _run():
+def create_app():
     scheduler = get_scheduler()
-    try:
-        scheduler.start()
-        app.run(threaded=True, use_reloader=False, processes=1)
-    except KeyboardInterrupt, SystemExit:
-        scheduler.stop()
-        
+    scheduler.start()
+    return app
 
-def run():        
-    import multiprocessing
-    server = multiprocessing.Process(target=_run)
-    server.start()
-    try:
-        server.join()
-    except KeyboardInterrupt, SystemExit:
-        server.join(2)
-        if server.is_alive:
-            server.terminate()
-        
+
+def run():
+    from gevent.wsgi import WSGIServer
+    scheduler = get_scheduler()
+    scheduler.start()
+    app.debug = True
+    server = WSGIServer(("", 3333), app)
+    server.serve_forever()
 
 
 if __name__ == "__main__":

@@ -1,24 +1,28 @@
 import os
 from importlib import import_module
-from threading import Timer, Event
 from datetime import datetime, timedelta
 from functools import partial
 from collections import namedtuple
 from uuid import uuid4
 import logging
 import time
+import gevent
+import gevent.monkey
+
+gevent.monkey.patch_all()
 
 from flaneur import app, jobs
 import sse
 
 log = logging.getLogger(__name__)
 
+
 class Scheduler(object):
     
     
     def __init__(self):
         self.jobs = []
-        self.running = Event()
+        self.running = False
         
         
     def start(self, block=False):
@@ -36,16 +40,11 @@ class Scheduler(object):
             
             
     def stop(self, wait=True):
-        self.running.clear()
-        for job in self.jobs:
-            if job['timer']:
-                job['timer'].cancel()
-                if wait:
-                    job['timer'].join()
+        self.running = False
             
             
     def _start(self):
-        self.running.set()
+        self.running = True
         for job in self.jobs:
             self.schedule(job, job['delay'])
         
@@ -60,13 +59,12 @@ class Scheduler(object):
             'id': id, 
             'func': func,
             'interval': interval,
-            'delay': delay,
-            'timer': None
+            'delay': delay
         }
         self.jobs.append(job)
         log.debug('Added job:%s', job['id'])
         
-        if self.running.is_set():
+        if self.running:
             self.schedule(job, delay)
             
             
@@ -82,24 +80,25 @@ class Scheduler(object):
     def schedule(self, job, delay):
         log.debug('Scheduling job:%s to run in %d second%s', job['id'], delay.seconds, 
                                     's' if delay.seconds != 1 else '')
-        job['timer'] = Timer(delay.seconds, partial(self.run_job, job))
-        job['timer'].start()
+        gevent.spawn_later(delay.seconds, self.run_job, job)
         
         
     def run_job(self, job):
-        if not self.running.is_set():
-            return
-        log.debug('Running job:%s', job['id'])
-        last_run = datetime.now()
-        try:
-            job['func']()
-        except:
-            log.exception('Error running job')
-        finally:
-            next_run = last_run + job['interval']
-            now = datetime.now()
-            interval = next_run - now
-            self.schedule(job, job['interval'])
+        while self.running:
+            log.debug('Running job:%s', job['id'])
+            last_run = datetime.now()
+            try:
+                job['func']()
+            except:
+                log.exception('Error running job')
+            finally:
+                next_run = last_run + job['interval']
+                now = datetime.now()
+                interval = next_run - now
+                log.debug('Scheduling job:%s to run in %d second%s', job['id'], interval.seconds, 
+                                    's' if interval.seconds != 1 else '')
+                gevent.sleep(interval.seconds)
+        
             
             
 

@@ -1,4 +1,5 @@
-from Queue import Queue
+import gevent
+from gevent.queue import Queue
 from flask import Response
 import json
 
@@ -26,12 +27,15 @@ class ServerSentEvent(object):
 subscriptions = []
 
 def publish(channel, data):
-    msg = json.dumps({
-        'channel': channel,
-        'data': data
-    })
-    for sub in subscriptions[:]:
-        sub.put(msg)
+    def notify():
+        msg = json.dumps({
+            'channel': channel,
+            'data': data
+        })
+        for sub in subscriptions[:]:
+            sub.put(msg)
+    
+    gevent.spawn(notify)
     
     
 def subscribe():
@@ -47,9 +51,4 @@ def subscribe():
             subscriptions.remove(q)
 
     return Response(gen(), mimetype="text/event-stream")
-
-
-def emit(channel, data):
-    last_channel_data[channel] = data
-    return
     
