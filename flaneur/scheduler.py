@@ -62,7 +62,7 @@ class Scheduler(object):
             'delay': delay
         }
         self.jobs.append(job)
-        log.debug('Added job:%s', job['id'])
+        log.debug('Added \'%s\'', job['id'])
         
         if self.running:
             self.schedule(job, delay)
@@ -78,14 +78,14 @@ class Scheduler(object):
         
         
     def schedule(self, job, delay):
-        log.debug('Scheduling job:%s to run in %d second%s', job['id'], delay.seconds, 
+        log.debug('Scheduling \'%s\' to run in %d second%s', job['id'], delay.seconds, 
                                     's' if delay.seconds != 1 else '')
         gevent.spawn_later(delay.seconds, self.run_job, job)
         
         
     def run_job(self, job):
         while self.running:
-            log.debug('Running job:%s', job['id'])
+            log.debug('Running \'%s\'', job['id'])
             last_run = datetime.now()
             try:
                 job['func']()
@@ -95,7 +95,7 @@ class Scheduler(object):
                 next_run = last_run + job['interval']
                 now = datetime.now()
                 interval = next_run - now
-                log.debug('Scheduling job:%s to run in %d second%s', job['id'], interval.seconds, 
+                log.debug('Scheduling \'%s\' to run in %d second%s', job['id'], interval.seconds, 
                                     's' if interval.seconds != 1 else '')
                 gevent.sleep(interval.seconds)
         
@@ -131,6 +131,7 @@ def setup():
         options = app.config.get(job_name.upper())
         
         if hasattr(job, 'setup'):
+            log.debug('Spawning setup for \'%s\'', job_name)
             gevent.spawn(job.setup, options, publish)
         
         if hasattr(job, 'INTERVAL') and hasattr(job, 'update'):

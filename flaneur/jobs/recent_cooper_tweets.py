@@ -4,7 +4,7 @@ INTERVAL = None
 TWEETS_TO_KEEP = 10
 
 def setup(options, publish):
-    publish({'tweets': [], 'title': 'Recent Cooper Tweets'})
+    publish({'tweets': [], 'title': 'Cooper Tweets'})
     
     auth = OAuth(
         consumer_key=options['consumer_key'],
@@ -15,12 +15,12 @@ def setup(options, publish):
     
     rest = Twitter(auth=auth)
     tweets = rest.statuses.user_timeline(screen_name="cooper", count=TWEETS_TO_KEEP)
-    publish({'tweets': tweets, 'title': 'Recent Cooper Tweets'})
+    publish({'tweets': tweets, 'title': 'Cooper Tweets'})
     
     stream = TwitterStream(auth=auth)
     
-    for status in stream.statuses.filter(follow='17223242'):
+    for status in stream.statuses.filter(follow=options['cooper_id']):
         tweets.append(status)
         tweets = tweets[-TWEETS_TO_KEEP:]
-        publish({'tweets':tweets, 'title': 'Recent Cooper Tweets'})
+        publish({'tweets':tweets, 'title': 'Cooper Tweets'})
     

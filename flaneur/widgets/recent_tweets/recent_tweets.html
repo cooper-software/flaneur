@@ -1,6 +1,7 @@
 <h1>{{ title }}</h1>
 <ul>
     <li ng-repeat="tweet in tweets">
+        <span class="author">@{{ tweet.user.screen_name }}</span>
         {{ tweet.text }}
     </li>
 </ul>

@@ -18,3 +18,8 @@ flaneur-recent-tweets ul li
     line-height: 1.3em;
     border-bottom: 1px solid #ddd;
 }
+
+flaneur-recent-tweets ul li .author
+{
+    font-weight: bold;
+}
