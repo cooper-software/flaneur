@@ -1,0 +1,20 @@
+flaneur-recent-tweets ul
+{
+    list-style: none;
+    display: inline-block;
+    max-height: 280px;
+    overflow-y: auto;
+    background-color: #fff;
+    color: #000;
+    padding: 1em;
+    margin: 0;
+}
+
+flaneur-recent-tweets ul li
+{
+    text-align: left;
+    padding: 1em 0;
+    font-size: 0.85em;
+    line-height: 1.3em;
+    border-bottom: 1px solid #ddd;
+}

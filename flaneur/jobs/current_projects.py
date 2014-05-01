@@ -2,14 +2,15 @@ from ..support import wip
 
 
 INTERVAL = {
-    'hours': 12
+    'hours': 6
 }
 
 
-data = {
-    'projects': []
-}
+def setup(options, publish):
+    publish({'projects':[]})
 
 
-def update(options):
-    data['projects'] = wip.get(options['google_username'], options['google_password'])['projects']
+def update(options, publish):
+    publish({
+        'projects': wip.get(options['google_username'], options['google_password'])['projects']
+    })

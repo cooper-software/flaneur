@@ -6,11 +6,15 @@ INTERVAL = {
 }
 
 data = {
-    'count': 0,
-    'label': 'days since the last blog post'
+  'count': 0,
+  'label': 'days since the last blog post'
 }
 
-def update(options):
+def setup(options, publish):
+  publish(data)
+  
+
+def update(options, publish):
     conn = connect(host=options['mysql_host'],
                    user=options['mysql_user'], 
                    passwd=options['mysql_passwd'],
@@ -20,3 +24,4 @@ def update(options):
     last_post_date = cur.fetchone()[0]
     now = datetime.utcnow()
     data['count'] = (now - last_post_date).days
+    publish(data)

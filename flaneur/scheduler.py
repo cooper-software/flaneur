@@ -102,17 +102,18 @@ class Scheduler(object):
             
             
 
-jobs = {}
+job_data = {}
 _scheduler = None
 _is_setup = False
-
-def update(job_name, job, options):
-    job.update(options)
-    sse.publish(job_name, job.data)
     
     
 def get_job_data():
-    return dict([(k, v.data) for k,v in jobs.items()])
+    return job_data
+    
+    
+def publish_job_data_to_channel(job_name, data):
+    job_data[job_name] = data
+    sse.publish(job_name, data)
     
     
 def setup():
@@ -122,17 +123,19 @@ def setup():
     for module in os.listdir(os.path.join(os.path.dirname(__file__), 'jobs')):
         if module == '__init__.py' or module[-3:] != '.py':
             continue
+            
         job_name = module[:-3]
         job = import_module("flaneur.jobs.%s" % job_name)
+        
+        publish = partial(publish_job_data_to_channel, job_name)
+        options = app.config.get(job_name.upper())
+        
+        if hasattr(job, 'setup'):
+            gevent.spawn(job.setup, options, publish)
+        
         if hasattr(job, 'INTERVAL') and hasattr(job, 'update'):
-            jobs[job_name] = job
             interval = timedelta(**job.INTERVAL)
-            options = app.config.get(job_name.upper())
-            job_func = partial(update, job_name, job, options)
-            
-            if hasattr(job, 'setup'):
-                job.setup(options)
-                
+            job_func = partial(job.update, options, publish)
             _scheduler.add(job_func, interval, delay=0, id=job_name)
             
             

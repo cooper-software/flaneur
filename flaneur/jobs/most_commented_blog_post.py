@@ -11,7 +11,12 @@ data = {
     'description': 'has the most comments'
 }
 
-def update(options):
+
+def setup(options, publish):
+  publish(data)
+
+
+def update(options, publish):
     conn = connect(host=options['mysql_host'],
                    user=options['mysql_user'], 
                    passwd=options['mysql_passwd'],
@@ -22,3 +27,5 @@ def update(options):
     data['title'] = title
     data['url'] = "%s?p=%s" % (options['wordpress_url'], post_id)
     data['description'] = 'has the most comments (%d)' % comment_count
+    publish(data)
+    

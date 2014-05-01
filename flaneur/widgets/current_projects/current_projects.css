@@ -2,9 +2,11 @@ cooper-current-projects ul
 {
     list-style: none;
     display: inline-block;
-    max-height: 300px;
+    max-height: 280px;
     overflow-y: auto;
     background-color: #333;
+    padding: 1em;
+    margin: 0;
 }
 
 cooper-current-projects ul li

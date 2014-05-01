@@ -7,11 +7,16 @@ app.config.from_object('flaneur.config')
 if 'FLANEUR_SETTINGS' in os.environ:
     app.config.from_envvar('FLANEUR_SETTINGS')
 
-#if not app.debug:
-if True:
-    import logging
-    logging.basicConfig(filename='flaneur.log', level=logging.DEBUG,
-            format='%(levelname)s[%(asctime)s]: %(message)s')
+import logging
+log_level = logging.DEBUG
+log_format = '%(levelname)s[%(asctime)s]: %(message)s'
+
+
+if app.debug:
+    logging.basicConfig(stream=sys.stderr, level=log_level, format=log_format)
+
+else:
+    logging.basicConfig(filename=app.config['LOG_FILE'], level=log_level, format=log_format)
 
 import assets
 import views
