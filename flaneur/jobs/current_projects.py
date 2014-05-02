@@ -11,6 +11,8 @@ def setup(options, publish):
 
 
 def update(options, publish):
+    q = wip.get(options['google_username'], options['google_password'])
+    projects = q.get()['projects']
     publish({
-        'projects': wip.get(options['google_username'], options['google_password'])['projects']
+        'projects': projects
     })

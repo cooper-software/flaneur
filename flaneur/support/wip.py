@@ -1,25 +1,38 @@
-from datetime import datetime, timedelta
 import gspread
+import gevent
+from gevent.queue import Queue
+from datetime import datetime
 
 wip = {}
-last_update = None
+updating = False
+listeners = []
 
 
 def get(username, password):
-    global last_update
-    now = datetime.now()
-    if not last_update or now - last_update < timedelta(minutes=1):
-        last_update = now
-        update(username, password)
-    return wip
+    q = Queue()
+    listeners.append(q)
+    gevent.spawn(update, username, password)
+    return q
     
 
 def update(username, password):
+    global updating, listeners
+    
+    if updating:
+        return
+    
+    updating = True
+    
     gc = gspread.login(username, password)
     sheet = gc.open_by_key('0Asqb35iBXqGTdG5EUFUwYUlYS09NMUFlZDc3STdpN2c').get_worksheet(0)
     rows = sheet.get_all_values()
     wip['projects'] = get_projects(rows)
     wip['assignments'] = get_assignments(rows)
+    to_notify = listeners[:]
+    listeners = []
+    for q in to_notify:
+        print q
+        q.put(wip)
     
     
 def get_projects(rows):

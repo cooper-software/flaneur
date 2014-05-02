@@ -11,6 +11,18 @@ body
     color: #fff;
 }
 
+h1
+{
+    font-weight: normal;
+    font-size: 1.7em;
+}
+
+h2
+{
+    font-weight: normal;
+    font-size: 1.5em;
+}
+
 a
 {
     color: #efefef;
