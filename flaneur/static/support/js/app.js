@@ -8,7 +8,7 @@ window.Flaneur =
 }
 
 
-var app = angular.module('flaneur', ['templates'])
+var app = angular.module('flaneur', ['ngSanitize', 'templates'])
 
 app.controller("AppCtrl", function ()
 {

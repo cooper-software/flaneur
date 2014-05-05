@@ -32,7 +32,6 @@ def update():
     to_notify = listeners[:]
     listeners = []
     for q in to_notify:
-        print q
         q.put(wip)
     
     

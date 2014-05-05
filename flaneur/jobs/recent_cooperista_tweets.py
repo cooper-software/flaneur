@@ -3,12 +3,16 @@ from ..support import twitterstuff
 INTERVAL = None
 TWEETS_TO_KEEP = 10
 
+data = {'tweets': [], 'title': 'Cooperistas Tweets'}
+
+
 def setup(options, publish):
-    publish({'tweets': [], 'title': 'Cooperista Tweets'})
+    publish(data)
     
     rest = twitterstuff.rest_client()
     tweets = rest.lists.statuses(list_id=twitterstuff.cooperista_list_id(), count=TWEETS_TO_KEEP)
-    publish({'tweets': tweets, 'title': 'Cooperista Tweets'})
+    data['tweets'] = tweets
+    publish(data)
     
     cursor = '-1'
     member_ids = []

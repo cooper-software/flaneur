@@ -1,4 +1,4 @@
-flaneur-recent-tweets ul
+flaneur-tweets ul
 {
     list-style: none;
     display: inline-block;
@@ -10,7 +10,7 @@ flaneur-recent-tweets ul
     margin: 0;
 }
 
-flaneur-recent-tweets ul li
+flaneur-tweets ul li
 {
     text-align: left;
     padding: 1em 0;
@@ -19,9 +19,22 @@ flaneur-recent-tweets ul li
     border-bottom: 1px solid #ddd;
 }
 
-flaneur-recent-tweets ul li .author
+flaneur-tweets ul li .author
 {
     font-size: 1.4em;
-    margin: 0 0 0.5em 0;
+    margin: 0;
     font-weight: bold;
+}
+
+flaneur-tweets ul li .text a
+{
+    color: blue;
+}
+
+flaneur-tweets ul li .meta
+{
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #888;
+    margin: 0.5em 0;
 }

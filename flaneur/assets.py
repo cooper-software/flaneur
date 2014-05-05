@@ -28,6 +28,7 @@ env = Environment(app)
 env.register('all_js',
     Bundle(
         'support/js/vendor/angular.min.js',
+        'support/js/vendor/angular-sanitize.min.js',
         'support/js/vendor/jquery.min.js',
         'support/js/vendor/jquery.gridster.min.js'
     ),
