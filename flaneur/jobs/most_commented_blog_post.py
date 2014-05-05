@@ -1,5 +1,5 @@
 from datetime import datetime
-from MySQLdb import connect
+from ..support import wordpress
 
 INTERVAL = {
     "minutes": 1
@@ -17,15 +17,12 @@ def setup(options, publish):
 
 
 def update(options, publish):
-    conn = connect(host=options['mysql_host'],
-                   user=options['mysql_user'], 
-                   passwd=options['mysql_passwd'],
-                   db=options['mysql_db'])
+    conn = wordpress.connection()
     cur = conn.cursor()
     cur.execute('SELECT ID, post_title, comment_count FROM wp_posts ORDER BY comment_count DESC LIMIT 1')
     post_id, title, comment_count = cur.fetchone()
     data['title'] = title
-    data['url'] = "%s?p=%s" % (options['wordpress_url'], post_id)
+    data['url'] = "%s?p=%s" % (wordpress.site_url(), post_id)
     data['description'] = 'has the most comments (%d)' % comment_count
     publish(data)
     

@@ -11,8 +11,7 @@ def setup(options, publish):
 
 
 def update(options, publish):
-    q = wip.get(options['google_username'], options['google_password'])
-    assignments = q.get()['assignments']
+    assignments = wip.get()['assignments']
     
     designers = set()
     

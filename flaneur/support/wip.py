@@ -2,20 +2,21 @@ import gspread
 import gevent
 from gevent.queue import Queue
 from datetime import datetime
+from flaneur import app
 
 wip = {}
 updating = False
 listeners = []
 
 
-def get(username, password):
+def get():
     q = Queue()
     listeners.append(q)
-    gevent.spawn(update, username, password)
-    return q
+    gevent.spawn(update)
+    return q.get()
     
 
-def update(username, password):
+def update():
     global updating, listeners
     
     if updating:
@@ -23,7 +24,7 @@ def update(username, password):
     
     updating = True
     
-    gc = gspread.login(username, password)
+    gc = gspread.login(app.config['GOOGLE_DOCS']['username'], app.config['GOOGLE_DOCS']['password'])
     sheet = gc.open_by_key('0Asqb35iBXqGTdG5EUFUwYUlYS09NMUFlZDc3STdpN2c').get_worksheet(0)
     rows = sheet.get_all_values()
     wip['projects'] = get_projects(rows)
