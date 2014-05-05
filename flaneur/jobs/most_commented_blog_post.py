@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from ..support import wordpress
 
 INTERVAL = {
@@ -19,7 +19,11 @@ def setup(options, publish):
 def update(options, publish):
     conn = wordpress.connection()
     cur = conn.cursor()
-    cur.execute('SELECT ID, post_title, comment_count FROM wp_posts ORDER BY comment_count DESC LIMIT 1')
+    cur.execute("""SELECT ID, post_title, comment_count 
+        FROM wp_posts 
+        WHERE post_date_gmt > SUBDATE(NOW(), INTERVAL 60 DAY)
+        ORDER BY comment_count DESC 
+        LIMIT 1""")
     post_id, title, comment_count = cur.fetchone()
     data['title'] = title
     data['url'] = "%s?p=%s" % (wordpress.site_url(), post_id)
