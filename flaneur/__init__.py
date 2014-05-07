@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Blueprint
 import os, sys
 
 app = Flask("flaneur")
@@ -22,6 +22,9 @@ import assets
 import views
 import sse
 from scheduler import get_scheduler
+
+widgets_blueprint = Blueprint('widgets', __name__, static_url_path='/widgets', static_folder='./widgets')
+app.register_blueprint(widgets_blueprint)
 
 def create_app():
     scheduler = get_scheduler()

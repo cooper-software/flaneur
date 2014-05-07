@@ -25,28 +25,36 @@ register_filter(AngularTemplatesFilter)
 
 env = Environment(app)
 
-env.register('all_js',
+all_js_bundles = [
     Bundle(
         'support/js/vendor/angular.min.js',
         'support/js/vendor/angular-sanitize.min.js',
         'support/js/vendor/jquery.min.js',
         'support/js/vendor/jquery.gridster.min.js'
-    ),
-    Bundle(
+    )
+]
+
+if app.config.get('ASSETS_DEBUG'):
+    all_js_bundles.append(Bundle('support/js/templates.dummy.js'))
+else:
+    all_js_bundles.append(Bundle(
         'support/templates/*.html',
         '../widgets/**/*.html',
         filters='angular_templates'
-    ),
+    ))
+
+all_js_bundles += [
     Bundle(
-        'support/js/app.js',
+        'support/js/flaneur.js',
         filters='rjsmin'
     ),
     Bundle(
         '../widgets/**/*.js',
         filters='rjsmin'
-    ),
-    output='all.js'
-)
+    )
+]
+
+env.register('all_js', *all_js_bundles, output='all.js')
 
 env.register('all_css', Bundle(
     'support/css/main.css',

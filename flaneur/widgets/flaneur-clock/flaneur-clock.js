@@ -1,11 +1,6 @@
-angular.module('flaneur')
-
-.directive('flaneurClock', function ($interval)
+Flaneur('flaneur-clock', function ($interval)
 {
     return {
-        restrict: 'E',
-        scope: {},
-        templateUrl: 'widgets/clock/clock.html',
         link: function (scope)
         {
             scope.date = new Date()
@@ -18,7 +13,7 @@ angular.module('flaneur')
     }
 })
 
-.filter('flaneurClockTime', function ()
+angular.module('flaneur').filter('flaneurClockTime', function ()
 {
     return function (date)
     {
