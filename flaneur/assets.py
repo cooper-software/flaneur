@@ -45,6 +45,7 @@ else:
 
 all_js_bundles += [
     Bundle(
+        'support/js/qbert.js',
         'support/js/flaneur.js',
         filters='rjsmin'
     ),
@@ -59,6 +60,7 @@ env.register('all_js', *all_js_bundles, output='all.js')
 env.register('all_css', Bundle(
     'support/css/main.css',
     'support/css/jquery.gridster.css',
+    'support/css/qbert.css',
     '../widgets/**/*.css',
     filters='cssmin',
     output='all.css'

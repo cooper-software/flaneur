@@ -1,0 +1,10 @@
+.qbert
+{
+    position: relative;
+    margin: 0 auto;
+}
+
+.qbert > *
+{
+    display: block;
+}

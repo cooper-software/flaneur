@@ -2,7 +2,7 @@ flaneur-list ul
 {
     list-style: none;
     display: inline-block;
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: auto;
     background-color: #fff;
     color: #333;

@@ -11,10 +11,8 @@
     {% endassets %}
 </head>
 <body>
-    <div class="gridster" ng-app="flaneur">
-        <ul>
-            {% block widgets %}{% endblock %}
-        </ul>
+    <div ng-app="flaneur">
+        {% block body %}{% endblock %}
     </div>
 </body>
 </html>

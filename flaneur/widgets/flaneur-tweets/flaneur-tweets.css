@@ -2,7 +2,7 @@ flaneur-tweets ul
 {
     list-style: none;
     display: inline-block;
-    max-height: 280px;
+    max-height: 220px;
     overflow-y: auto;
     background-color: #fff;
     color: #000;

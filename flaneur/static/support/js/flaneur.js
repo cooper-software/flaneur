@@ -69,13 +69,6 @@ app.factory('Hub', function ($timeout)
     return hub
 })
 
-app.run(function ()
-{
-    $('.gridster ul').gridster({
-        widget_margins: [0, 0]
-    })
-})
-
 window.Flaneur = function (name, create_fn)
 {
     var getDashedName = function (name)
@@ -145,5 +138,16 @@ window.Flaneur = function (name, create_fn)
         }
     })
 }
+
+app.run(function ()
+{
+    jQuery('.gridster ul').gridster(
+    {
+        widget_margins: [0,0],
+        widget_base_dimensions: [187, 187]
+    })
+    
+    qbert('.qbert')
+})
 
 })()

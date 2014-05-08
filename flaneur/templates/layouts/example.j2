@@ -1,38 +1,31 @@
-{% extends 'base.j2' %}
+{% extends 'base.gridster.j2' %}
 
 {% block title %}A Simple Example{% endblock %}
 
 {% block widgets %}
 
-<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="blue">
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" class="blue">
     <flaneur-counter channel="last_blog_post"></flaneur-counter>
 </li>
-
-<li data-row="2" data-col="1" data-sizex="1" data-sizey="1" class="red">
+<li data-row="1" data-col="3" data-sizex="2" data-sizey="1" class="light-gray">
     <flaneur-link channel="most_commented_blog_post"></flaneur-link>
 </li>
-
-<li data-row="1" data-col="2" data-sizex="1" data-sizey="2" class="gray">
+<li data-row="2" data-col="1" data-sizex="2" data-sizey="2" class="gray">
     <cooper-current-projects channel="current_projects"></cooper-current-projects>
 </li>
-
-<li data-row="1" data-col="3" data-sizex="1" data-sizey="2" class="blue">
+<li data-row="2" data-col="3" data-sizex="2" data-sizey="2" class="red">
     <flaneur-list channel="designers_on_whitespace"></flaneur-list>
 </li>
-
-<li data-row="3" data-col="1" data-sizex="1" data-sizey="2" class="blue">
+<li data-row="2" data-col="5" data-sizex="2" data-sizey="2" class="dark-blue">
     <flaneur-tweets channel="recent_cooper_tweets"></flaneur-tweets>
 </li>
-
-<li data-row="3" data-col="2" data-sizex="1" data-sizey="2" class="red">
+<li data-row="4" data-col="1" data-sizex="2" data-sizey="2" class="light-gray">
     <flaneur-tweets channel="recent_cooperista_tweets"></flaneur-tweets>
 </li>
-
-<li data-row="3" data-col="3" data-sizex="1" data-sizey="2" class="gray">
+<li data-row="4" data-col="3" data-sizex="2" data-sizey="2" class="gray">
     <flaneur-tweets channel="most_retweeted"></flaneur-tweets>
 </li>
-
-<li data-row="4" data-col="1" data-sizex="1" data-sizey="2" class="gray">
+<li data-row="4" data-col="5" data-sizex="2" data-sizey="2" class="blue">
     <flaneur-tweets channel="recent_cooper_mentions"></flaneur-tweets>
 </li>
 

@@ -29,7 +29,7 @@ a
     text-decoration: none;
 }
 
-.gridster > ul
+.gridster
 {
     list-style: none;
     padding: 0;
@@ -37,7 +37,6 @@ a
 
 .gridster > ul > li
 {
-    background-color: #777;
     display: table;
 }
 
@@ -55,17 +54,27 @@ body .gridster .preview-holder
     background-color: #888;
 }
 
-.gridster .blue
+.blue
 {
     background-color: #2C97DE;
 }
 
-.gridster .red
+.dark-blue
+{
+    background-color: #33485F;
+}
+
+.red
 {
     background-color: #DA4453;
 }
 
-.gridster .gray
+.gray
 {
     background-color: #555;
+}
+
+.light-gray
+{
+    background-color: #ccc;
 }
