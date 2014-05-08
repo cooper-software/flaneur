@@ -1,0 +1,15 @@
+<h1>{{ title }}</h1>
+<ul>
+    <li ng-repeat="user in users">
+        <div ng-if="user.profile_image_url" class="image">
+            <img src="{{ user.profile_image_url }}" />
+        </div>
+        <div class="description">
+            <h1>{{ user.name }}</h1>
+            <h2>
+                <a href="http://twitter.com/{{ user.screen_name }}" target="_blank">@{{ user.screen_name }}</a>,
+                followers: {{ user.followers_count | number }}
+            </h2>
+        </div>
+    </li>
+</ul>
