@@ -1,0 +1,22 @@
+<div class="paged-widget">
+    <h1>
+        <span class="social">&#xF611;</span> Twitter
+        <flaneur-pages-control items="users" per-page="5" page="page"></flaneur-page-control>
+    </h1>
+    <flaneur-pages items="users" per-page="5" page="page">
+        <ul class="items">
+            <li class="item" ng-repeat="user in items">
+                <div ng-if="user.profile_image_url" class="image">
+                    <img ng-attr-src="{{ user.profile_image_url }}" />
+                </div>
+                <div class="description">
+                    <h1>{{ user.name }}</h1>
+                    <p>
+                        {{ user.followers_count | number }}
+                    </p>
+                    <a class="handle" href="http://twitter.com/{{ user.screen_name }}" target="_blank">@{{ user.screen_name }}</a>
+                </div>
+            </li>
+        </ul>
+    </flaneur-pages>
+</div>

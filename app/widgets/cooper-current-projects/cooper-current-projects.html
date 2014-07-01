@@ -1,0 +1,14 @@
+<div class="paged-widget">
+    <h1>
+        <span class="gizmo">&#x1F4D3;</span>Current Projects
+        <flaneur-pages-control items="projects" per-page="5" page="page"></flaneur-page-control>
+    </h1>
+    <flaneur-pages items="projects" per-page="5" page="page">
+        <ul class="items">
+            <li class="item" ng-repeat="project in items | orderBy:'name'">
+                <h1>{{ project.name }}</h1>
+                <div class="team">{{ project.team.join(", ") }}</div>
+            </li>
+        </ul>
+    </flaneur-pages>
+</div>

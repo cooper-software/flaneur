@@ -1,0 +1,64 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #fff;
+    color: #fff;
+}
+
+h1
+{
+    font-weight: normal;
+    font-size: 1.7em;
+}
+
+h2
+{
+    font-weight: normal;
+    font-size: 1.5em;
+}
+
+#widgets
+{
+    box-sizing: border-box;
+}
+
+
+#widgets,
+#widgets > *
+{
+    border: 2px solid #fff;
+    padding: 0;
+}
+
+#widgets > * > *
+{
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.blue
+{
+    background-color: #1e87be;
+}
+
+.green
+{
+    background-color: #8cc152;
+}
+
+.yellow
+{
+    background-color: #f4bc45;
+}
+
+.red
+{
+    background-color: #c8212b;
+}

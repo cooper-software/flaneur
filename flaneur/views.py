@@ -1,11 +1,12 @@
 import os
-from flask import render_template, abort, request
+from flask import render_template, abort, request, redirect, url_for
 from flaneur import app, sse, scheduler
 
 
 @app.route("/")
 def index():
-    return render_template("index.j2")
+    return redirect(url_for('layout', name='cooper-dashboard'))
+    #return render_template("index.j2")
     
     
 @app.route("/layout/<name>")

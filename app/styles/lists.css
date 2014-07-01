@@ -1,0 +1,47 @@
+.items
+{
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.29);
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.items .item
+{
+    position: relative;
+    padding-left: 58px;
+    margin-bottom: 20px;
+    height: 48px;
+}
+
+.items .item:last-child
+{
+    margin-bottom: 0;
+}
+
+.items .item .image
+{
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.items .item h1
+{
+    margin: 0 0 8px 0;
+    font-size: 21px;
+    line-height: 1em;
+}
+
+.items .item p
+{
+    margin: 0;
+    font-size: 21px;
+    line-height: 1em;
+    font-weight: 300;
+}

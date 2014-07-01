@@ -26,6 +26,7 @@ from scheduler import get_scheduler
 widgets_blueprint = Blueprint('widgets', __name__, static_url_path='/widgets', static_folder='./widgets')
 app.register_blueprint(widgets_blueprint)
 
+
 def create_app():
     scheduler = get_scheduler()
     scheduler.start()
@@ -34,10 +35,12 @@ def create_app():
 
 def run():
     from gevent.wsgi import WSGIServer
-    scheduler = get_scheduler()
-    scheduler.start()
+    #scheduler = get_scheduler()
+    #scheduler.start()
     app.debug = True
-    server = WSGIServer(("", 3333), app)
+    PORT = 3333
+    server = WSGIServer(("", PORT), app)
+    print "Running server on localhost:%d" % PORT
     server.serve_forever()
 
 

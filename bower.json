@@ -1,0 +1,11 @@
+{
+  "name": "flaneur",
+  "version": "0.0.1",
+  "main": "public/app.js",
+  "dependencies": {
+    "qbert": "~0.0.2",
+    "angular": "~1.2.18",
+    "angular-sanitize": "~1.2.18"
+  },
+  "overrides": {}
+}

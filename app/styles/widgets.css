@@ -1,0 +1,24 @@
+.paged-widget h1
+{
+    font-size: 32px;
+    line-height: 36px;
+    font-weight: 300;
+    margin: 0 0 8px 0;
+    position: relative;
+}
+
+.paged-widget h1 .gizmo,
+.paged-widget h1 .social
+{
+    font-size: 48px;
+    line-height: 48px;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.paged-widget h1 flaneur-pages-control
+{
+    position: absolute;
+    top: 20%;
+    right: 0;
+}
