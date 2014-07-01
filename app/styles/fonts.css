@@ -73,6 +73,7 @@ html:hover [class^="ss-"]{-ms-zoom: 1;}
 .social
 {
     font-family: "SSSocialRegular";
+    vertical-align: middle;
 }
 
 /*
@@ -122,4 +123,5 @@ html:hover [class^="ss-"]{-ms-zoom: 1;}
 .gizmo
 {
     font-family: "SSGizmo";
+    vertical-align: middle;
 }

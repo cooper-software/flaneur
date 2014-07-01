@@ -1,7 +1,11 @@
 (function ()
 {
 
-var app = angular.module('flaneur', ['ngSanitize', 'templates'])
+var app = angular.module('flaneur', [
+    'ngSanitize',
+    'ngTouch',
+    'templates'
+])
 
 app.factory('Hub', function ($timeout)
 {

@@ -10,7 +10,7 @@
     }
 
     module.run(["$templateCache", function($templateCache) {
-        $templateCache.put('app/paging/pages-control.html', '<ul class="page-control">    <li class="dot" ng-repeat="p in pages" ng-class="{ selected: p == page }"></li></ul>');
+        $templateCache.put('app/paging/pages-control.html', '<ul class="page-control">    <li class="dot"         ng-repeat="p in pages"         ng-class="{ selected: p == page }"></li></ul>');
     }]);
 })();
 ;(function() {
@@ -25,7 +25,7 @@
     }
 
     module.run(["$templateCache", function($templateCache) {
-        $templateCache.put('app/widgets/cooper-current-projects/cooper-current-projects.html', '<div class="paged-widget">    <h1>        <span class="gizmo">&#x1F4D3;</span>Current Projects        <flaneur-pages-control items="projects" per-page="5" page="page"></flaneur-page-control>    </h1>    <flaneur-pages items="projects" per-page="5" page="page">        <ul class="items">            <li class="item" ng-repeat="project in items | orderBy:\'name\'">                <h1>{{ project.name }}</h1>                <div class="team">{{ project.team.join(", ") }}</div>            </li>        </ul>    </flaneur-pages></div>');
+        $templateCache.put('app/widgets/cooper-current-projects/cooper-current-projects.html', '<div class="paged-widget">    <h1>        <span class="gizmo">&#x1F4D3;</span>Current Projects        <flaneur-pages-control items="projects" per-page="5" page="page"></flaneur-page-control>    </h1>    <flaneur-pages items="projects" per-page="5" page="page" rotate-every="5">        <ul class="items">            <li class="item" ng-repeat="project in items | orderBy:\'name\'">                <div class="image">                    <div class="number">{{ $itemOffset + $index + 1 | zeroPadding:2 }}</div>                </div>                <div class="description">                    <h1>{{ project.name }}</h1>                    <p>                        <span class="gizmo">&#x1F464;</span>                        {{ project.team.join(", ") }}                    </p>                </div>            </li>        </ul>    </flaneur-pages></div>');
     }]);
 })();
 ;(function() {
@@ -115,7 +115,7 @@
     }
 
     module.run(["$templateCache", function($templateCache) {
-        $templateCache.put('app/widgets/flaneur-twitter-users/flaneur-twitter-users.html', '<div class="paged-widget">    <h1>        <span class="social">&#xF611;</span> Twitter        <flaneur-pages-control items="users" per-page="5" page="page"></flaneur-page-control>    </h1>    <flaneur-pages items="users" per-page="5" page="page">        <ul class="items">            <li class="item" ng-repeat="user in items">                <div ng-if="user.profile_image_url" class="image">                    <img ng-attr-src="{{ user.profile_image_url }}" />                </div>                <div class="description">                    <h1>{{ user.name }}</h1>                    <p>                        {{ user.followers_count | number }}                    </p>                    <a class="handle" href="http://twitter.com/{{ user.screen_name }}" target="_blank">@{{ user.screen_name }}</a>                </div>            </li>        </ul>    </flaneur-pages></div>');
+        $templateCache.put('app/widgets/flaneur-twitter-users/flaneur-twitter-users.html', '<div class="paged-widget">    <h1>        <span class="social">&#xF611;</span> Twitter        <flaneur-pages-control items="users" per-page="5" page="page"></flaneur-page-control>    </h1>    <flaneur-pages items="users" per-page="5" page="page" rotate-every="5">        <ul class="items">            <li class="item" ng-repeat="user in items">                <div ng-if="user.profile_image_url" class="image">                    <img ng-attr-src="{{ user.profile_image_url }}" />                </div>                <div class="description">                    <h1>{{ user.name }}</h1>                    <p>                        <span class="gizmo">&#x1F464;</span>{{ user.followers_count | number }}                    </p>                    <a class="handle" href="http://twitter.com/{{ user.screen_name }}" target="_blank">@{{ user.screen_name }}</a>                </div>            </li>        </ul>    </flaneur-pages></div>');
     }]);
 })();
 ;

@@ -10,6 +10,12 @@ flaneur-pages-control ul
     padding: 0;
     height: 12px;
     line-height: 12px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 flaneur-pages-control li
@@ -33,16 +39,23 @@ flaneur-pages-control li.selected
     background-color: #fff;
 }
 
-
+flaneur-pages
+{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 flaneur-pages .page
 {
-    display: none;
-}
-
-flaneur-pages .page.selected
-{
-    display: block;
+    display: inline-block;
+    width: 100%;
 }
 @charset "UTF-8";
 
@@ -119,6 +132,7 @@ html:hover [class^="ss-"]{-ms-zoom: 1;}
 .social
 {
     font-family: "SSSocialRegular";
+    vertical-align: middle;
 }
 
 /*
@@ -168,6 +182,7 @@ html:hover [class^="ss-"]{-ms-zoom: 1;}
 .gizmo
 {
     font-family: "SSGizmo";
+    vertical-align: middle;
 }
 .items
 {
@@ -204,8 +219,9 @@ html:hover [class^="ss-"]{-ms-zoom: 1;}
 
 .items .item h1
 {
-    margin: 0 0 8px 0;
+    margin: 0 0 5px 0;
     font-size: 21px;
+    font-weight: normal;
     line-height: 1em;
 }
 
@@ -215,6 +231,12 @@ html:hover [class^="ss-"]{-ms-zoom: 1;}
     font-size: 21px;
     line-height: 1em;
     font-weight: 300;
+}
+
+.items .item p .gizmo,
+.items .item p .social
+{
+    margin-right: 3px;
 }
 html, body
 {
@@ -241,13 +263,6 @@ h2
     font-size: 1.5em;
 }
 
-#widgets
-{
-    box-sizing: border-box;
-}
-
-
-#widgets,
 #widgets > *
 {
     border: 2px solid #fff;
@@ -333,6 +348,18 @@ h2
     position: absolute;
     top: 20%;
     right: 0;
+}
+cooper-current-projects .item .number
+{
+    background-color: #fff;
+    color: #C8393E;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 48px;
+    text-align: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 3px;
 }
 flaneur-twitter-users .items .image img
 {

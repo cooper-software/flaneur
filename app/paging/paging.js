@@ -47,14 +47,15 @@ angular.module('flaneur')
     }
 })
 
-.directive('flaneurPages', function ()
+.directive('flaneurPages', function ($swipe, $timeout, $interval)
 {
     return {
         restrict: 'E',
         scope: {
             items: '=',
             perPage: '@',
-            page: '='
+            page: '=',
+            rotateEvery: '@'
         },
         transclude: true,
         link: function ($scope, $element, $attrs, $controller, $transclude)
@@ -116,6 +117,7 @@ angular.module('flaneur')
                     group.element.addClass('page')
                     $element.append(group.element)
                     childScope.items = group.items
+                    childScope.$itemOffset = i * $scope.perPage
                     
                     $transclude(childScope, function (clone)
                     {
@@ -127,30 +129,135 @@ angular.module('flaneur')
                         })
                     })
                 }
-                
-                if (groups[$scope.page])
-                {
-                    groups[$scope.page].element.addClass('selected')
-                }
             })
 
             $scope.$watch('page', function (page)
             {
-                if (page >= groups.length)
+                if (groups && groups[0])
                 {
-                    return
+                    groups[0].element.animate({ marginLeft: - $element.width() * page }, 150)
                 }
-                
-                for (var i=0; i<groups.length; i++)
-                {
-                    if (i != page)
-                    {
-                        groups[i].element.removeClass('selected')
-                    }
-                }
-                
-                groups[page].element.addClass('selected')
             })
+            
+            var rotateInterval = parseFloat($attrs.rotateEvery) * 1000,
+                rotatePromise = null,
+                shouldRotate = $attrs.rotateEvery && true
+                rotate = function ()
+                {
+                    if (shouldRotate)
+                    {
+                        rotatePromise = $interval(function ()
+                        {
+                            if ($scope.page == groups.length - 1)
+                            {
+                                $scope.page = 0
+                            }
+                            else
+                            {
+                                $scope.page += 1
+                            }
+                        }, rotateInterval)
+                    }
+                },
+                stopRotating = function ()
+                {
+                    $interval.cancel(rotatePromise)
+                }
+            rotate()
+            
+            var pagingController =
+            {
+                startPos: null,
+                offset: 0,
+                
+                setOffset: function (x)
+                {
+                    this.offset = x
+                    groups[0].element.css('margin-left',  (-1 * $scope.page * $element.width()) + x)
+                },
+                
+                snap: function ()
+                {
+                    var pageWidth = $element.width(),
+                        absOffset = Math.abs(this.offset)
+                    
+                    if (absOffset > pageWidth / 2)
+                    {
+                        this.updatePage()
+                    }
+                    else
+                    {
+                        this.snapToCurrent()
+                    }
+                },
+                
+                snapToCurrent: function ()
+                {
+                    groups[0].element.animate({ 'margin-left': -1 * $scope.page * $element.width() }, 150)
+                },
+                
+                updatePage: function ()
+                {
+                    if (this.offset < 0)
+                    {
+                        if ($scope.page < groups.length - 1)
+                        {
+                            $timeout(function ()
+                            {
+                                $scope.page += 1
+                            })
+                        }
+                        else
+                        {
+                            this.snapToCurrent()
+                        }
+                    }
+                    else
+                    {
+                        if ($scope.page > 0)
+                        {
+                            $timeout(function ()
+                            {
+                                $scope.page -= 1
+                            })
+                        }
+                        else
+                        {
+                            this.snapToCurrent()
+                        }
+                    }
+                },
+                
+                start: function (pos)
+                {
+                    stopRotating()
+                    this.startPos = pos
+                },
+                
+                cancel: function ()
+                {
+                    this.snap()
+                    rotate()
+                },
+                
+                move: function (pos)
+                {
+                    this.setOffset(pos.x - this.startPos.x)
+                },
+                
+                end: function ()
+                {
+                    if (this.offset == 0)
+                    {
+                        return
+                    }
+                    
+                    this.updatePage()
+                    rotate()
+                }
+            }
+            
+            $swipe.bind($element, pagingController)
         }
     }
 })

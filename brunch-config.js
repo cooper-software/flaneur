@@ -15,7 +15,7 @@ exports.config =
             },
             order:
             {
-                before: 'app/app.js'
+                before: ['app/app.js', 'bower_components/jquery/dist/jquery.js']
             }
         },
         
