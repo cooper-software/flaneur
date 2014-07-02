@@ -55,7 +55,7 @@
     }
 
     module.run(["$templateCache", function($templateCache) {
-        $templateCache.put('app/widgets/flaneur-counter/flaneur-counter.html', '<h1>{{ count }}</h1><h2>{{ label }}</h2>');
+        $templateCache.put('app/widgets/flaneur-counter/flaneur-counter.html', '<h1><span class="gizmo" ng-if="icon" ng-bind-html="icon"></span>{{ count | zeroPadding:2 }}</h1><h2>{{ label }}</h2>');
     }]);
 })();
 ;(function() {

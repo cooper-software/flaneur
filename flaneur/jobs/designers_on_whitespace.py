@@ -19,4 +19,15 @@ def update(options, publish):
         if project_id is None:
             designers.add(designer)
     
-    publish({'items':sorted(list(designers)), 'title': 'Designers on Whitespace'})
+    designers = sorted(list(designers))
+    
+    publish({
+        # For list widget
+        'items': designers, 
+        'title': 'Designers on white space'
+        
+        # For count widget
+        'count': len(designers),
+        'icon': '&#x1F464;',
+        'label': 'Designers on white space'
+    })

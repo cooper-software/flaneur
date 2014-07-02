@@ -7,7 +7,8 @@ INTERVAL = {
 
 data = {
   'count': 0,
-  'label': 'days since the last blog post'
+  'label': 'Days since the last blog post',
+  'icon': '&#x270E;'
 }
 
 def setup(options, publish):
