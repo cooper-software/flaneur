@@ -24,7 +24,7 @@ def update(options, publish):
     publish({
         # For list widget
         'items': designers, 
-        'title': 'Designers on white space'
+        'title': 'Designers on white space',
         
         # For count widget
         'count': len(designers),
