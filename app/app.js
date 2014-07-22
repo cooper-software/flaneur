@@ -145,7 +145,7 @@ window.Flaneur = function (name, create_fn)
 
 app.run(function ()
 {
-    qbert('#widgets', {
+    qbert('.widgets', {
         target_pixel_size: 218
     })
 })

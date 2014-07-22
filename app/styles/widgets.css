@@ -1,4 +1,19 @@
-.paged-widget h1
+.widgets > *
+{
+    border: 2px solid #fff;
+    padding: 0;
+}
+
+.widgets > * > *
+{
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.widgets h1
 {
     font-size: 32px;
     line-height: 36px;
@@ -7,8 +22,8 @@
     position: relative;
 }
 
-.paged-widget h1 .gizmo,
-.paged-widget h1 .social
+.widgets h1 .gizmo,
+.widgets h1 .social
 {
     font-size: 48px;
     line-height: 48px;
@@ -16,7 +31,7 @@
     margin-right: 10px;
 }
 
-.paged-widget h1 flaneur-pages-control
+.widgets h1 flaneur-pages-control
 {
     position: absolute;
     top: 20%;

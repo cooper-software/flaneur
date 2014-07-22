@@ -55,7 +55,7 @@
     }
 
     module.run(["$templateCache", function($templateCache) {
-        $templateCache.put('app/widgets/flaneur-counter/flaneur-counter.html', '<h1><span class="gizmo" ng-if="icon" ng-bind-html="icon"></span>{{ count | zeroPadding:2 }}</h1><h2>{{ label }}</h2>');
+        $templateCache.put('app/widgets/flaneur-counter/flaneur-counter.html', '<div class="count">    <h1><span class="gizmo" ng-if="icon" ng-bind-html="icon"></span>{{ count | zeroPadding:2 }}</h1>    <h2>{{ label }}</h2></div>');
     }]);
 })();
 ;(function() {
@@ -100,7 +100,7 @@
     }
 
     module.run(["$templateCache", function($templateCache) {
-        $templateCache.put('app/widgets/flaneur-tweets/flaneur-tweets.html', '<h1>{{ title }}</h1><ul>    <li ng-repeat="tweet in tweets">        <h2 class="author">{{ tweet.user.name }}</h2>        <div class="meta">            <span class="date">{{ tweet.created_at | twitterDate }}</span>            <span class="retweets" ng-if="tweet.retweet_count">                |                <ng-pluralize count="tweet.retweet_count"                              when="{\'one\': \'1 retweet\', \'other\': \'{} retweets\'}">                              </ng-pluralize>            </span>        </div>        <div class="text" ng-bind-html="tweet.text | linky:\'_blank\'"></div>    </li></ul>');
+        $templateCache.put('app/widgets/flaneur-tweets/flaneur-tweets.html', '<h1>    <span class="social">&#xF611;</span> {{ title }}</h1><ul class="items">    <li ng-repeat="tweet in tweets" class="tweet">        <div ng-if="tweet.user.profile_image_url" class="image">            <img ng-attr-src="{{ tweet.user.profile_image_url }}" />        </div>        <h2 class="author">            {{ tweet.user.name }}            <span class="meta">                <span class="date">{{ tweet.created_at | twitterDate }}</span>                <span class="retweets" ng-if="tweet.retweet_count">                    |                    <ng-pluralize count="tweet.retweet_count"                                  when="{\'one\': \'1 retweet\', \'other\': \'{} retweets\'}">                                  </ng-pluralize>                </span>            </span>        </h2>        <div class="text" ng-bind-html="tweet.text | linky:\'_blank\'"></div>    </li></ul>');
     }]);
 })();
 ;(function() {

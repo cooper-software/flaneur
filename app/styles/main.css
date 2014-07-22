@@ -23,17 +23,10 @@ h2
     font-size: 1.5em;
 }
 
-#widgets > *
+a
 {
-    border: 2px solid #fff;
-    padding: 0;
-}
-
-#widgets > * > *
-{
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    color: #24C7F0;
+    text-decoration: none;
 }
 
 .blue

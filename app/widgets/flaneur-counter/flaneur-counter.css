@@ -7,10 +7,11 @@ flaneur-counter
     left: 0;
     -webkit-transform: translate(0,-50%);
     transform: translate(0,-50%);
+    height: auto !important;
 }
 
 
-flaneur-counter h1
+flaneur-counter .count h1
 {
     font-size: 72px;
     font-weight: 300;
@@ -18,13 +19,14 @@ flaneur-counter h1
     line-height: 1em;
 }
 
-flaneur-counter h1 .gizmo
+flaneur-counter .count h1 .gizmo
 {
     font-size: 48px;
     margin-right: 5px;
+    vertical-align: middle;
 }
 
-flaneur-counter h2
+flaneur-counter .count h2
 {
     font-size: 21px;
     font-weight: 300;

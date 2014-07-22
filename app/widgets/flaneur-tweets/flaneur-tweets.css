@@ -1,0 +1,48 @@
+flaneur-tweets .items
+{
+    position: absolute;
+    top: 78px;
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+    width: auto;
+    overflow-y: auto;
+}
+
+flaneur-tweets .tweet
+{
+    position: relative;
+    padding-left: 58px;
+    margin-bottom: 0.75em;
+    min-height: 48px;
+}
+
+flaneur-tweets .tweet .image
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+flaneur-tweets .tweet .image img
+{
+    border-radius: 3px;
+}
+
+flaneur-tweets .tweet h2
+{
+    margin: 0 0 0 0;
+    line-height: 1em;
+    font-size: 1.25em;
+}
+
+flaneur-tweets .tweet .meta
+{
+    font-size: 0.6em;
+    font-weight: 400;
+}
+
+flaneur-tweets .tweet .text
+{
+    font-weight: 300;
+}
