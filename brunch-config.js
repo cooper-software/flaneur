@@ -40,5 +40,13 @@ exports.config =
     {
         wrapper: false,
         definition: false
+    },
+    
+    plugins:
+    {
+        uglify:
+        {
+            mangle: false
+        }
     }
 }
