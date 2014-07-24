@@ -121,7 +121,7 @@ def setup():
     _is_setup = True
     _scheduler = Scheduler()
     for module in os.listdir(os.path.join(os.path.dirname(__file__), 'jobs')):
-        if module == '__init__.py' or module[-3:] != '.py':
+        if module.startswith('_') or module[-3:] != '.py':
             continue
             
         job_name = module[:-3]

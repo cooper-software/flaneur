@@ -5,7 +5,7 @@
     </h1>
     <flaneur-pages items="users" per-page="5" page="page" rotate-every="5">
         <ul class="items">
-            <li class="item" ng-repeat="user in items">
+            <li class="item with-image" ng-repeat="user in items">
                 <div ng-if="user.profile_image_url" class="image">
                     <img ng-attr-src="{{ user.profile_image_url }}" />
                 </div>

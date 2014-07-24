@@ -35,8 +35,8 @@ def create_app():
 
 def run():
     from gevent.wsgi import WSGIServer
-    #scheduler = get_scheduler()
-    #scheduler.start()
+    scheduler = get_scheduler()
+    scheduler.start()
     app.debug = True
     PORT = 3333
     server = WSGIServer(("", PORT), app)

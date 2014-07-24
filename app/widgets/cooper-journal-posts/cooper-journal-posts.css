@@ -1,0 +1,25 @@
+cooper-journal-posts .item
+{
+    margin-bottom: 1em;
+}
+
+cooper-journal-posts .item:last-child
+{
+    margin-bottom: 0;
+}
+
+cooper-journal-posts h2
+{
+    margin: 0;
+    line-height: 1.2em;
+}
+
+cooper-journal-posts h2 a
+{
+    color: #fff;
+}
+
+cooper-journal-posts .meta
+{
+    font-size: 14px;
+}

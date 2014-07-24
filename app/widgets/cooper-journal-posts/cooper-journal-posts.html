@@ -1,0 +1,13 @@
+<h1>{{ title }}</h1>
+<ul class="items items-scrollable">
+    <li class="item" ng-repeat="post in posts">
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <div class="meta">
+            by {{ post.authors | cooperJournalPostAuthors }}
+            •
+            {{ post.timestamp | cooperJournalPostDate }}
+            •
+            <ng-pluralize count="post.comment_count" when="{ '0': 'No comments', 'one': '1 Comment', 'other': '{} Comments' }"></ng-pluralize>
+        </div>
+    </li>
+</ul>

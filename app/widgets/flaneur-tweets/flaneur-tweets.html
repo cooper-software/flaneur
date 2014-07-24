@@ -1,7 +1,7 @@
 <h1>
     <span class="social">&#xF611;</span> {{ title }}
 </h1>
-<ul class="items">
+<ul class="items items-scrollable">
     <li ng-repeat="tweet in tweets" class="tweet">
         <div ng-if="tweet.user.profile_image_url" class="image">
             <img ng-attr-src="{{ tweet.user.profile_image_url }}" />
