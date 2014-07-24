@@ -120,11 +120,16 @@ def setup():
     global _is_setup, _scheduler
     _is_setup = True
     _scheduler = Scheduler()
+    disabled_jobs = set(app.config.get('DISABLED_JOBS', []))
     for module in os.listdir(os.path.join(os.path.dirname(__file__), 'jobs')):
         if module.startswith('_') or module[-3:] != '.py':
             continue
             
         job_name = module[:-3]
+        
+        if job_name in disabled_jobs:
+            continue
+        
         job = import_module("flaneur.jobs.%s" % job_name)
         
         publish = partial(publish_job_data_to_channel, job_name)
