@@ -1,0 +1,6 @@
+<h1>{{ title }}</h1>
+<ul class="photos">
+    <li class="photo" ng-repeat="photo in photos">
+        <a target="_blank" href="{{ photo.link_url }}"><img ng-attr-src="{{ photo.image_url }}"></a>
+    </li>
+</ul>
