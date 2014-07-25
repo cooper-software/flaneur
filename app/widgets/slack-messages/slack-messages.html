@@ -1,0 +1,12 @@
+<h1>{{ title }}</h1>
+<ul class="items items-scrollable">
+    <li class="item with-image" ng-repeat="message in messages">
+        <div class="image">
+            <img ng-attr-src="{{ message.user.profile.image_48 }}" />
+        </div>
+        <div class="description">
+            <h1>{{ message.user.name }} <span class="time">{{ message.ts | formatTimestamp }}</span></h1>
+            <p ng-bind-html="message.text"></p>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,18 @@
+slack-messages .items .item h1
+{
+    font-size: 1.2em;
+    margin: 0;
+}
+
+slack-messages .items .item h1 .time
+{
+    font-size: 0.6em;
+    font-weight: normal;
+}
+
+slack-messages .items .item p
+{
+    font-size: 1em;
+    line-height: 1.3em;
+    font-weight: 300;
+}

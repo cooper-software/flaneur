@@ -5,7 +5,7 @@
         <div class="meta">
             by {{ post.authors | cooperJournalPostAuthors }}
             •
-            {{ post.timestamp | cooperJournalPostDate }}
+            {{ post.timestamp | formatTimestamp }}
             •
             <ng-pluralize count="post.comment_count" when="{ '0': 'No comments', 'one': '1 Comment', 'other': '{} Comments' }"></ng-pluralize>
         </div>

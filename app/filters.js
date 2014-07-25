@@ -18,3 +18,12 @@ angular.module('flaneur')
         return valueStr
     }
 })
+
+.filter('formatTimestamp', function ($filter)
+{
+    return function (value)
+    {
+        var date = new Date(parseFloat(value) * 1000)
+        return $filter('date')(date, 'short')
+    }
+})

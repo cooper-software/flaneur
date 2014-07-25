@@ -17,12 +17,3 @@ angular.module('flaneur')
         }
     }
 })
-
-.filter('cooperJournalPostDate', function ($filter)
-{
-    return function (value)
-    {
-        var date = new Date(value * 1000)
-        return $filter('date')(date, 'short')
-    }
-})
