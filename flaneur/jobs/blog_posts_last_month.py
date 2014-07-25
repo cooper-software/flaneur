@@ -7,7 +7,7 @@ INTERVAL = {
 }
 
 data = {
-  'title': 'Journal posts in the last month',
+  'title': 'Journal posts last 30 days',
   'posts': []
 }
 
