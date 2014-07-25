@@ -1,6 +1,8 @@
 from flaneur import app
 import time
 from ..support import slack
+import logging
+log = logging.getLogger(__name__)
 
 INTERVAL = {
     'minutes': 7
@@ -15,8 +17,13 @@ def setup(options, publish):
     
     
 def update(options, publish):
+    channel = slack.get_channel_by_name('away')
+    if not channel:
+        log.error('Could not find an #away channel!')
+        return
+    
     res = slack.get_client().channels.history(
-        channel=app.config['SLACK']['general_channel'],
+        channel=channel['id'],
         oldest=time.time()-172800
     )
     if res.error:
@@ -26,8 +33,7 @@ def update(options, publish):
     messages = []
     
     for m in res.body['messages']:
-        if m['type'] == 'message' and 'subtype' not in m and\
-            -1 < m['text'].find('#away'):
+        if m['type'] == 'message' and 'subtype' not in m:
             messages.append(slack.process_message(m))
     
     publish({

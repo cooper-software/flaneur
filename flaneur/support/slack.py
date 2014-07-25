@@ -33,6 +33,11 @@ def get_channels():
 def get_channel(channel_id):
     return get_channels().get(channel_id, {'name': 'unknown'})
     
+def get_channel_by_name(channel_name):
+    for c in get_channels().values():
+        if c['name'] == channel_name:
+            return c
+    
 def process_message(message):
     new_message = message.copy()
     new_message['user'] = get_user(message['user'])
