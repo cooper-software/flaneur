@@ -1,4 +1,12 @@
 <h1>{{ title }}</h1>
-<ul class="items">
-    <li class="item " ng-repeat="item in items">{{ item }}</li>
+<ul class="items items-scrollable">
+    <li class="item" ng-class="{ 'with-image': item.image }" ng-repeat="item in items">
+        <div ng-if="item.image" class="image">
+            <img ng-attr-src="{{ item.image }}">
+        </div>
+        <div class="description">
+            <h1 ng-if="item.title">{{ item.title }}</h1>
+            <p ng-if="item.text">{{ item.text }}</p>
+        </div>
+    </li>
 </ul>

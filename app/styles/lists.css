@@ -22,6 +22,11 @@
     overflow-x: hidden;
 }
 
+.items .item
+{
+    margin-bottom: 20px;
+}
+
 .items .item:last-child
 {
     margin-bottom: 0;
@@ -31,7 +36,6 @@
 {
     position: relative;
     padding-left: 58px;
-    margin-bottom: 20px;
     min-height: 48px;
 }
 
