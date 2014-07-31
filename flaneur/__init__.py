@@ -3,6 +3,7 @@ import os, sys
 
 app = Flask("flaneur")
 app.config.from_object('flaneur.config')
+app.config['SERVER_NAME'] = None
 
 if 'FLANEUR_SETTINGS' in os.environ:
     app.config.from_envvar('FLANEUR_SETTINGS')
@@ -39,8 +40,8 @@ def run():
     scheduler.start()
     app.debug = True
     PORT = 3333
-    server = WSGIServer(("", PORT), app)
-    print "Running server on localhost:%d" % PORT
+    server = WSGIServer(("0.0.0.0", PORT), app)
+    print "Running server on 0.0.0.0:%d" % PORT
     server.serve_forever()
 
 
